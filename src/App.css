@@ -1,0 +1,13 @@
+.app {
+    --header-height: 4em;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    height: var(--header-height);
+}
+
+.content {
+    margin-top: var(--header-height);
+}
