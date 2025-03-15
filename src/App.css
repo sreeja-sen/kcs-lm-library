@@ -1,13 +1,102 @@
 .app {
     --header-height: 4em;
+    --colour-primary: #123456;
+    --colour-secondary: #654321;
+    --colour-tertiary: #6789ab;
+    --colour-surface: #ba9876;
+    --colour-error: #ffff00;
+    --colour-accent: #00ffff;
 }
 
 .header {
     position: fixed;
+    padding: 0.8rem;
+
+    display: flex;
     width: 100%;
     height: var(--header-height);
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--colour-primary);
+}
+
+.header-left {
+    display: flex;
+    gap: 0.4rem;
 }
 
 .content {
-    margin-top: var(--header-height);
+    padding-top: var(--header-height);
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-bar {
+    padding: 0.2rem;
+    display: flex;
+    width: 70%;
+    background-color: var(--colour-accent);
+}
+
+.search-input {
+    flex: 10;
+    background-color: transparent;
+    border: none;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-button {
+    padding: 0.2rem 0.6rem;
+}
+
+.main {
+    --gap: 3rem;
+    padding: var(--gap);
+    padding-top: 1rem;
+
+    display: flex;
+    max-width: 90vw;
+    flex-direction: column;
+    gap: var(--gap);
+
+    background-color: var(--colour-tertiary);
+}
+
+.button-group {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.button {
+    width: 20%;
+    min-width: 10em;
+}
+
+.books {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 3rem;
+    overflow-x: scroll;
+}
+
+.book {
+    min-width: 20vw;
+    height: 40vh;
+
+    background-color: var(--colour-surface);
+    box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.2);
 }
