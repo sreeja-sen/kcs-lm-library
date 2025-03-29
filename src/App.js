@@ -1,6 +1,13 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 
+import bookLoader from "./bookLoader";
+
 function App() {
+    const [tempBookData, setTempBookData] = useState([]);
+
+    useEffect(() => bookLoader().then(data => setTempBookData(data)), []);
+
     return (
         <div className="app">
             <header className="header">
