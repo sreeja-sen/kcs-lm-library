@@ -34,34 +34,23 @@ function App() {
                             <button className="button">D</button>
                             <button className="button">E</button>
                         </div>
-                        <div className="books">
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                            <article className="book"></article>
-                        </div>
+                        <BookRenderer books={tempBookData} />
                     </main>
                 </div>
             </div>
         </div>
     );
 };
+
+function BookRenderer({ books }) {
+    
+    const renderedBooks = books
+        .filter((book, i) => i < 3)
+        .map((book) => <article className="book"><img src={book.coverImg}/></article>)
+
+    return <div className="books">
+        { renderedBooks }
+    </div>
+}
 
 export default App;
