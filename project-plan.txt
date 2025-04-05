@@ -3,6 +3,7 @@ Completed:
 - Initial homepage structure
 - Basic homepage styling
 - Book test data loading
+- Trending Books test data rendering
 
 
 
@@ -10,7 +11,6 @@ Completed:
 
 
 To be completed:
-- Trending Books test data rendering
 - Full page book info component
 - Book text searching
     - Account info integration
