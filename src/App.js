@@ -23,7 +23,7 @@ function App() {
             <div className="content">
                 <div className="content-wrapper">
                     <aside className="search-bar">
-                        <input type="text" className="search-input" placeholder="..."/>
+                        <input type="text" className="search-input" placeholder="..." />
                         <button className="search-button">Search</button>
                     </aside>
                     <main className="main">
@@ -34,7 +34,7 @@ function App() {
                             <button className="button">D</button>
                             <button className="button">E</button>
                         </div>
-                        <BookRenderer books={tempBookData} />
+                        <FeaturedBookRenderer books={tempBookData} />
                     </main>
                 </div>
             </div>
@@ -42,15 +42,34 @@ function App() {
     );
 };
 
-function BookRenderer({ books }) {
+function bookDataTransformer(bookJson) {
+    const coverImgRegex = /^.*\/(.*\/.*\.(png|jpg))$/;
+    const matches = bookJson.coverImg.match(coverImgRegex);
+    const coverImgLocal = matches[1].replace("/", "");
     
+    return { ...bookJson, coverImgLocal };
+}
+
+function FeaturedBookRenderer({ books }) {
+
     const renderedBooks = books
-        .filter((book, i) => i < 3)
-        .map((book) => <article className="book"><img src={book.coverImg}/></article>)
+        .filter((book, i) => i < 10)
+        .map(bookDataTransformer)
+        .map((book) => <FeaturedBook book={book} />)
 
     return <div className="books">
-        { renderedBooks }
+        {renderedBooks}
     </div>
+}
+
+function FeaturedBook({ book }) {
+    const { title, author, coverImg, coverImgLocal, genres } = book;
+
+    return (
+        <article className="book">
+            <img className="image" src={coverImg} />
+        </article>
+    );
 }
 
 export default App;
