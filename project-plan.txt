@@ -1,0 +1,24 @@
+Completed:
+
+- Initial homepage structure
+- Basic homepage styling
+- Book test data loading
+
+
+
+
+
+
+To be completed:
+- Trending Books test data rendering
+- Full page book info component
+- Book text searching
+    - Account info integration
+        - Category/genres buttons
+        - Book search filters
+
+
+Extras:
+- Book request
+- Book donate
+- Full catalog
