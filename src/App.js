@@ -45,7 +45,7 @@ function App() {
 function bookDataTransformer(bookJson) {
     const coverImgRegex = /^.*\/(.*\/.*\.(png|jpg))$/;
     const matches = bookJson.coverImg.match(coverImgRegex);
-    const coverImgLocal = matches[1].replace("/", "");
+    const coverImgLocal = "covers/" + matches[1].replace("/", "");
     
     return { ...bookJson, coverImgLocal };
 }
@@ -53,7 +53,6 @@ function bookDataTransformer(bookJson) {
 function FeaturedBookRenderer({ books }) {
 
     const renderedBooks = books
-        .filter((book, i) => i < 10)
         .map(bookDataTransformer)
         .map((book) => <FeaturedBook book={book} />)
 
@@ -67,7 +66,7 @@ function FeaturedBook({ book }) {
 
     return (
         <article className="book">
-            <img className="image" src={coverImg} />
+            <img className="image" src={coverImgLocal} />
         </article>
     );
 }
