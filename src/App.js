@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import FeaturedBookRenderer from "./Components/FeaturedBooks";
+import BookFullDisplay from "./Components/BookFullDisplay";
 
 import "./App.css";
 
@@ -8,9 +9,11 @@ import bookLoader from "./bookLoader";
 
 function App() {
     const [tempBookData, setTempBookData] = useState([]);
+    const [tempBookFull, setTempBookFull] = useState(undefined);
 
     useEffect(() => bookLoader().then(data => setTempBookData(data)), []);
-
+    useEffect(() => setTempBookFull(tempBookData[0]), [tempBookData]);
+    
     return (
         <div className="app">
             <header className="header">
@@ -37,7 +40,12 @@ function App() {
                             <button className="button">D</button>
                             <button className="button">E</button>
                         </div>
-                        <FeaturedBookRenderer books={tempBookData} />
+                        {/* <FeaturedBookRenderer books={tempBookData} /> */}
+                        {tempBookFull ?
+                            <BookFullDisplay book={tempBookFull} />
+                            :
+                            <span>Book information not found.</span>
+                        }
                     </main>
                 </div>
             </div>

@@ -1,12 +1,4 @@
 
-function bookDataTransformer(bookJson) {
-  const coverImgRegex = /^.*\/(.*\/.*\.(png|jpg))$/;
-  const matches = bookJson.coverImg.match(coverImgRegex);
-  const coverImgLocal = "covers/" + matches[1].replace("/", "");
-  
-  return { ...bookJson, coverImgLocal };
-}
-
 function FeaturedBookRenderer({ books }) {
 
   const renderedBooks = books
