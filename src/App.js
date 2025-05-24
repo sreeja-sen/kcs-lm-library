@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 
-import FeaturedBookRenderer from "./Components/FeaturedBooks";
-import BookFullDisplay from "./Components/BookFullDisplay";
+import MainContent from "./Components/MainContent";
 
 import "./App.css";
 
 import bookLoader from "./bookLoader";
+import { localJsonSearch } from "./bookSearcher";
 
 function App() {
+    const [masterBookData, setMasterBookData] = useState([]);
     const [tempBookData, setTempBookData] = useState([]);
-    const [tempBookFull, setTempBookFull] = useState(undefined);
 
-    useEffect(() => bookLoader().then(data => setTempBookData(data)), []);
-    useEffect(() => setTempBookFull(tempBookData[0]), [tempBookData]);
-    
+    useEffect(() => { bookLoader().then(data => setMasterBookData(data)) }, []);
+    useEffect(() => setTempBookData(masterBookData), [masterBookData]);
+
+    const searchBooks = searchTerm => {
+        const searchResults = localJsonSearch(masterBookData, searchTerm);
+        setTempBookData(searchResults);
+    }
+
     return (
         <div className="app">
             <header className="header">
@@ -26,29 +31,8 @@ function App() {
                     <button>Account</button>
                 </div>
             </header>
-            <div className="content">
-                <div className="content-wrapper">
-                    <aside className="search-bar">
-                        <input type="text" className="search-input" placeholder="..." />
-                        <button className="search-button">Search</button>
-                    </aside>
-                    <main className="main">
-                        <div className="button-group">
-                            <button className="button">A</button>
-                            <button className="button">B</button>
-                            <button className="button">C</button>
-                            <button className="button">D</button>
-                            <button className="button">E</button>
-                        </div>
-                        {/* <FeaturedBookRenderer books={tempBookData} /> */}
-                        {tempBookFull ?
-                            <BookFullDisplay book={tempBookFull} />
-                            :
-                            <span>Book information not found.</span>
-                        }
-                    </main>
-                </div>
-            </div>
+
+            <MainContent mode="featured" books={tempBookData} searchBooks={searchBooks} />
         </div>
     );
 };

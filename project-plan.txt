@@ -4,6 +4,7 @@ Completed:
 - Basic homepage styling
 - Book test data loading
 - Trending Books test data rendering
+- Book text searching
 
 
 
@@ -12,7 +13,6 @@ Completed:
 
 To be completed:
 - Full page book info component
-- Book text searching
     - Account info integration
         - Category/genres buttons
         - Book search filters

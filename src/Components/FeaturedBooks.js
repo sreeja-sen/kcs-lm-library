@@ -2,8 +2,7 @@
 function FeaturedBookRenderer({ books }) {
 
   const renderedBooks = books
-      .map(bookDataTransformer)
-      .map((book) => <FeaturedBook book={book} />)
+      .map((book) => <FeaturedBook book={book} key={book.bookId} />)
 
   return <div className="books">
       {renderedBooks}
